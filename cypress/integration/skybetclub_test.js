@@ -46,7 +46,7 @@ describe("SBC Page", () => {
     cy.get(":nth-child(3) > :nth-child(1) > ._4zbleu > ._124ix1z").should(
       "be.visible"
     ); // free spins reward
-    cy.get("._1hopvwqr > ._1bsc4k2").click(); //scroll left
+    cy.get("._1hopvwqr > ._1bsc4k2").click(); //scroll right
     cy.get(":nth-child(4) > :nth-child(1) > ._4zbleu > ._124ix1z").should(
       "be.visible"
     ); // in play reward
@@ -77,14 +77,25 @@ describe("SBC Page", () => {
       "Earn 50 Free Spins with Sky Bet Club"
     );
   });
-});
 
-/*
+  // Placing a Bet
 
-  it("Place a bet", () => {
-    cy.get;
-  });
+  //it("Place a bet", () => {
+  // cy.visit("https://m.staging.skybet.com/");
+  //cy.get('[data-ui-state="live"] > a').click();
+  //cy.wait(10000);
+  //cy.get('[data-oc-id="147259859"] > ._z6hm7g').click();
+  //});
+
+  //Opting Out
+
   it("Opts out and check visible elements", () => {
-    cy.get;
+    cy.get("._f24ydtNaN").click();
+    cy.wait(5000);
+    cy.get("._f24ydtNaN").contains("Opt in to Sky Bet Club").click();
+    cy.wait(5000);
+    cy.get("._11kcehy > :nth-child(2)")
+      .invoke("text")
+      .should("contain", "You're Opted In"); //opt in message
   });
-*/
+});
