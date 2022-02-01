@@ -1,31 +1,3 @@
-/*describe("Heading text", () => {
-  beforeEach(() => {
-    cy.visit("https://m.test4.skybet.com/skybetclub");
-  });
-  Cypress.on("uncaught:exception", (err, runnable) => {
-    // returning false here prevents Cypress from
-    // failing the test
-    return false;
-  });
-  it("accepts cookies", () => {
-    cy.get(".cookie-notice > .i").click();
-    cy.get(".js-login").click();
-    //cy.visit(
-    //"https://www.test4.skybet.com/secure/identity/m/login/mskybet?urlconsumer=https://m.test4.skybet.com&dl=1"
-    // );
-  });
-});
-before(() => {
-    cy.visit("https://m.staging.skybet.com/skybetclub");
-  });
-
-    //cy.visit(
-    //  "https://www.staging.skybet.com/secure/identity/m/login/mskybet?urlconsumer=https://m.staging.skybet.com&dl=1"
-    // ); // this may be wrong
-    //cy.frameLoaded("#SkyBetAccount.sba-iframe");
-    //cy.iframe("#SkyBetAccount.sba-iframe");
-    //cy.iframe().find("._1l82qefj").click();
-*/
 import "cypress-iframe";
 import "cypress-xpath";
 
@@ -35,6 +7,9 @@ describe("SBC Page", () => {
     // failing the test
     return false;
   });
+
+  // Logging the User in
+
   it("User Logs In", () => {
     cy.visit(
       "https://www.staging.skybet.com/secure/identity/m/login/mskybet?urlconsumer=https://m.staging.skybet.com&dl=1"
@@ -51,6 +26,9 @@ describe("SBC Page", () => {
       });
     });
   });
+
+  // Checking elements on SBC page
+
   it("Checks visible elements on the page", () => {
     cy.get("._1qpz3o4").invoke("text").should("contain", "Promotions"); //Title
     cy.get("#home > ._8ehxtn").should("be.visible"); //Home tab
@@ -79,12 +57,30 @@ describe("SBC Page", () => {
       .should("contain", "Terms and Conditions"); //T&Cs Header
     cy.get("._f24ydtNaN").should("be.visible"); //opt out button
   });
+
+  //Selecting Different Rewards
+
+  it("Selects different rewards", () => {
+    cy.get(":nth-child(2) > :nth-child(1) > ._4zbleu > ._124ix1z").should(
+      "be.visible"
+    ); //free bets visible
+    cy.get("._1wzeo03").invoke("text").should("contain", "Selected"); // free bets selected
+    cy.get(":nth-child(3) > :nth-child(1) > ._4zbleu > ._124ix1z").should(
+      "be.visible"
+    ); // free spins reward
+    cy.get(
+      ":nth-child(3) > :nth-child(1) > ._4zbleu > ._124ix1z > ._qctpfx > ._57p1h7NaN"
+    )
+      .click()
+      .wait(10000); //select free spins
+    cy.get("._szm1n6 > ._ieiase").contains(
+      "Earn 50 Free Spins with Sky Bet Club"
+    );
+  });
 });
 
 /*
-it("Selects different rewards", () => {
-    cy.get;
-  });
+
   it("Place a bet", () => {
     cy.get;
   });
