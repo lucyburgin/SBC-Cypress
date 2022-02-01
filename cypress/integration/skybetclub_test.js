@@ -35,28 +35,20 @@ describe("Test to demonstrate testing of iframes in Cypress", () => {
     // failing the test
     return false;
   });
-
-  it("should find the log in in the iframe", () => {
-    cy.visit("https://m.staging.skybet.com/?open=login");
-    Cypress.Commands.add(
-      "iframeCustom",
-      { prevSubject: "element" },
-      ($iframe) => {
-        return new Cypress.Promise((resolve) => {
-          $iframe.ready(function () {
-            resolve($iframe.contents().find("body"));
-          });
-        });
-      }
-    );
-  });
   it("logs in", () => {
-    cy.frameLoaded("#SkyBetAccount"); //Load iFrame
-
-    cy.iframe().find('//*[@id="username"]').click().type("test001");
-    cy.iframe().find('//*[@id="pin"]').click().type("1212");
-    cy.iframe()
-      .find('//*[@id="entry"]/div/div[2]/div[1]/div/div[1]/form/button')
-      .click();
+    cy.visit(
+      "https://www.staging.skybet.com/secure/identity/m/login/mskybet?urlconsumer=https://m.staging.skybet.com&dl=1"
+    );
+    cy.get("[data-qa=login-username]").then(() => {
+      cy.get("[data-qa=login-username]").type("test002");
+      cy.get("[data-qa=update-pin-current]").then(() => {
+        cy.get("[data-qa=update-pin-current]").type("1212");
+        cy.get("button[type=submit]").then(() => {
+          cy.get("button[type=submit]").click();
+          cy.wait(2000);
+          cy.visit("https://m.staging.skybet.com/skybetclub");
+        });
+      });
+    });
   });
 });
