@@ -21,10 +21,35 @@ describe("SBC Page", () => {
         cy.get("button[type=submit]").then(() => {
           cy.get("button[type=submit]").click();
           cy.wait(2000);
-          cy.visit("https://m.staging.skybet.com/skybetclub");
+          cy.visit("https://m.staging.skybet.com");
         });
       });
     });
+  });
+
+  // Placing a Bet
+
+  it("Place a bet", () => {
+    //cy.get("#burger-nav-button").click(); //open menu
+    //cy.wait(2000); //wait to load
+    //cy.get(
+    // ":nth-child(1) > ._xr39n5 > ._1wi3b2v > :nth-child(5) > ._34ak6x"
+    // ).click(); //click inplay
+    cy.wait(5000); //wait for page to load
+    cy.get('[data-ui-state="popularbets"] > a').click(); //click popular bets
+    cy.wait(2000);
+    cy.get(".view-all-button").click();
+    cy.wait(2000);
+    cy.get(":nth-child(15) > .outcome-price > ._uezd1y").click(); //click on the odds
+    cy.get("._nhl2y7").click().type(1);
+    cy.get("._26eilpd").click();
+    cy.wait(5000);
+    cy.get("#burger-nav-button").click(); //open menu;
+    cy.wait(2000); //wait to load
+    cy.get(
+      ":nth-child(1) > ._xr39n5 > ._1wi3b2v > :nth-child(3) > ._34ak6x"
+    ).click();
+    cy.wait(10000);
   });
 
   // Checking elements on SBC page
@@ -73,19 +98,8 @@ describe("SBC Page", () => {
     )
       .click()
       .wait(10000); //select free spins
-    cy.get("._szm1n6 > ._ieiase").contains(
-      "Earn 50 Free Spins with Sky Bet Club"
-    );
+    //cy.get("._szm1n6 > ._ieiase").contains("50 Free Spins");
   });
-
-  // Placing a Bet
-
-  //it("Place a bet", () => {
-  // cy.visit("https://m.staging.skybet.com/");
-  //cy.get('[data-ui-state="live"] > a').click();
-  //cy.wait(10000);
-  //cy.get('[data-oc-id="147259859"] > ._z6hm7g').click();
-  //});
 
   //Opting Out
 
