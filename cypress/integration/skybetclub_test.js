@@ -21,7 +21,7 @@ describe("SBC Page", () => {
         cy.get("button[type=submit]").then(() => {
           cy.get("button[type=submit]").click();
           cy.wait(2000);
-          cy.visit("https://m.staging.skybet.com");
+          cy.visit("https://m.staging.skybet.com/");
         });
       });
     });
@@ -40,7 +40,7 @@ describe("SBC Page", () => {
     cy.wait(2000);
     cy.get(".view-all-button").click();
     cy.wait(2000);
-    cy.get(":nth-child(15) > .outcome-price > ._uezd1y").click(); //click on the odds
+    cy.get(":nth-child(15) > .outcome-price > ._rzxkeif").click(); //click on the odds
     cy.get("._nhl2y7").click().type(1);
     cy.get("._26eilpd").click();
     cy.wait(5000);
