@@ -28,7 +28,7 @@ describe("SBC Page", () => {
   });
 
   // Placing a Bet
-
+  /*
   it("Place a bet", () => {
     cy.wait(5000); //wait for page to load
     cy.get('[data-ui-state="popularbets"] > a').click(); //click popular bets
@@ -39,5 +39,5 @@ describe("SBC Page", () => {
     cy.get("._nhl2y7").click().type(1);
     cy.get("._26eilpd").click();
     cy.wait(5000);
-  });
+  }); */
 });
