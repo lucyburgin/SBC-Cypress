@@ -1,6 +1,3 @@
-import "cypress-iframe";
-import "cypress-xpath";
-
 describe("SBC Page", () => {
   Cypress.on("uncaught:exception", (err, runnable) => {
     // returning false here prevents Cypress from

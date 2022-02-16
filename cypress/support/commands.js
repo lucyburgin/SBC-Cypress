@@ -8,8 +8,7 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 //
-import "cypress-iframe";
-require("cypress-xpath");
+import "@bahmutov/cy-api/support";
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 //

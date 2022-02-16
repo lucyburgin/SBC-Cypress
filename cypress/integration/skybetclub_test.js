@@ -1,6 +1,3 @@
-import "cypress-iframe";
-import "cypress-xpath";
-
 describe("SBC Page", () => {
   Cypress.on("uncaught:exception", (err, runnable) => {
     // returning false here prevents Cypress from
@@ -76,6 +73,22 @@ describe("SBC Page", () => {
     //cy.get("._szm1n6 > ._ieiase").contains("50 Free Spins");
   });
 
+  //Rewards API
+
+  it("API status for rewards", () => {
+    cy.request("https://m.staging.skybet.com/skybetclub/api/v1/rewards")
+      .its("status")
+      .should("be.equal", 200);
+  });
+
+  //Tracker API
+
+  it("API status for tracker", () => {
+    cy.request("https://m.staging.skybet.com/skybetclub/v1/tracker")
+      .its("status")
+      .should("be.equal", 200);
+  });
+
   //Opting Out
 
   it("Opts out and check visible elements", () => {
@@ -83,8 +96,28 @@ describe("SBC Page", () => {
     cy.wait(5000);
     cy.get("._f24ydtNaN").contains("Opt in to Sky Bet Club").click();
     cy.wait(5000);
+  });
+
+  //Opt Out API
+
+  it("API status for opted out", () => {
+    cy.request("https://m.staging.skybet.com/skybetclub/api/v1/optout")
+      .its("status")
+      .should("be.equal", 200);
+  });
+
+  //Opts back in
+
+  it("Opts back in", () => {
     cy.get("._11kcehy > :nth-child(2)")
       .invoke("text")
       .should("contain", "You're Opted In"); //opt in message
+  });
+
+  //Opt In API
+  it("API status for opted in", () => {
+    cy.request("https://m.staging.skybet.com/skybetclub/api/v1/optin")
+      .its("status")
+      .should("be.equal", 200);
   });
 });
